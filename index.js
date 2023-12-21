@@ -31,7 +31,7 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     const userCollection = client.db('taskManagementDB').collection('user');
-    
+    const taskCollection = client.db('taskManagementDB').collection('task');
     // app.get('/district',async(req,res)=>{
     //     const cursor = districtCollection.find();
     //     const result = await cursor.toArray();
@@ -51,13 +51,13 @@ async function run() {
         res.send(result);
     });
     
-    // app.post('/dashboard/addTest', async (req, res) => {
+    app.post('/dashboard/addTask', async (req, res) => {
         
-    //     const test = req.body;
-    //     console.log(test);
-    //     const result = await testCollection.insertOne(test);
-    //     res.send(result);
-    // });
+        const task = req.body;
+        console.log(task);
+        const result = await taskCollection.insertOne(task);
+        res.send(result);
+    });
     app.get('/user', async (req, res) => {
     //     console.log('Request Headers:', req.headers);
         const authHeader = req.headers;
