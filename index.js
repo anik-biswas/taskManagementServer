@@ -121,28 +121,27 @@ async function run() {
     //     res.send(result);
     // })
   
-    // app.put('/dashboard/test/:id', async (req, res) => {
-    //     const id = req.params.id;
-    //     const filter = { _id: new ObjectId(id) }
-    //     const options = { upsert: true };
-    //     const updateTest = req.body;
+    app.put('/dashboard/task/:id', async (req, res) => {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) }
+        const options = { upsert: true };
+        const updateTask = req.body;
 
-    //     const test = {
-    //         $set: {
+        const task = {
+            $set: {
                 
-    //              name :updateTest.name,
-    //              description:updateTest.description,
-    //              testDate :updateTest.testDate,
-    //             price :updateTest.price,
-    //             slot :updateTest.slot,
-    //             testImg :updateTest.testImg
+                 name :updateTask.name,
+                 description:updateTask.description,
+                 taskDate :updateTask.taskDate,
+                priority :updateTask.priority,
+                status :updateTask.status,
                 
-    //         }
-    //     }
+            }
+        }
 
-    //     const result = await testCollection.updateOne(filter, test, options);
-    //     res.json({ success: true, message: 'Application successful' });
-    // })
+        const result = await taskCollection.updateOne(filter, task, options);
+        res.json({ success: true, message: 'Application successful' });
+    })
 
     app.get('/user/email', async (req, res) => {
         const { email } = req.query;
