@@ -32,12 +32,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     const userCollection = client.db('taskManagementDB').collection('user');
     const taskCollection = client.db('taskManagementDB').collection('task');
-    // app.get('/district',async(req,res)=>{
-    //     const cursor = districtCollection.find();
-    //     const result = await cursor.toArray();
-    //     res.send(result);
-    // })
-
+   
     app.post('/user', async (req, res) => {
         
         const user = req.body;
@@ -92,35 +87,6 @@ async function run() {
         res.send(result);
         })
     
-    //   app.put('/userUpdate/:id', async (req, res) => {
-    //     const id = req.params.id;
-    //     const filter = { _id: new ObjectId(id) }
-    //     const options = { upsert: true };
-    //     const userUpdate = req.body;
-
-    //     const user = {
-    //         $set: {
-               
-    //              name :userUpdate.name,
-    //              blood :userUpdate.blood,
-    //              district :userUpdate.district,
-    //              upazila :userUpdate.upazila,
-    //              email :userUpdate.email,
-                 
-    //         }
-    //     }
-
-    //     const result = await userCollection.updateOne(filter, user, options);
-    //     res.json({ success: true, message: 'Application successful' });
-    // })
-     
-    //   app.get('/user/admin/:id', async (req, res) => {
-    //     const id = req.params.id;
-    //     const query = { _id: new ObjectId(id) }
-    //     const result = await userCollection.findOne(query);
-    //     res.send(result);
-    // })
-  
     app.put('/dashboard/task/:id', async (req, res) => {
         const id = req.params.id;
         const filter = { _id: new ObjectId(id) }
