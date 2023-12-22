@@ -68,16 +68,28 @@ async function run() {
     })
    
         // fOR CLIENT SIDE
-        app.get('/test', async (req, res) => {
-            const cursor = testCollection.find();
-            const tests = await cursor.toArray();
-            res.send(tests);
+        app.get('/task', async (req, res) => {
+            const cursor = taskCollection.find();
+            const tasks = await cursor.toArray();
+            res.send(tasks);
         })
-        app.get('/testDetails/:id', async (req, res) => {
+        app.get('/taskDetails/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) }
-            const result = await testCollection.findOne(query);
+            const result = await taskCollection.findOne(query);
             res.send(result);
+        })
+        app.get('/dashboard/task/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const result = await taskCollection.findOne(query);
+            res.send(result);
+        })
+         app.delete('/dashboard/task/:id', async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await taskCollection.deleteOne(query);
+        res.send(result);
         })
     
     //   app.put('/userUpdate/:id', async (req, res) => {
@@ -109,12 +121,6 @@ async function run() {
     //     res.send(result);
     // })
   
-    // app.delete('/dashboard/test/:id', async (req, res) => {
-    //     const id = req.params.id;
-    //     const query = { _id: new ObjectId(id) };
-    //     const result = await testCollection.deleteOne(query);
-    //     res.send(result);
-    // })
     // app.put('/dashboard/test/:id', async (req, res) => {
     //     const id = req.params.id;
     //     const filter = { _id: new ObjectId(id) }
